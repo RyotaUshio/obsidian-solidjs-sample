@@ -49,7 +49,12 @@ const tsContext = await esbuild.context({
 	minify: prod,
 	metafile: prod,
 	plugins: [
-		solidPlugin(),
+		solidPlugin({
+			// https://docs.solidjs.com/configuration/typescript#addressing-import-issues-with-directives
+			typescript: {
+				onlyRemoveTypeImports: true,
+			}
+		}),
 	],
 	// https://github.com/amoutonbrady/esbuild-plugin-solid?tab=readme-ov-file#important-note-about-environment-configuration
 	define: {
